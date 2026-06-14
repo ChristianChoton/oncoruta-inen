@@ -93,9 +93,68 @@ export const getAlerts = (list = patients) => {
         patient
       });
     }
+    if (patient.soporte?.dolor >= 8) {
+      alerts.push({
+        id: `pain-${patient.id}`,
+        type: 'Crítica',
+        color: 'red',
+        title: 'Dolor severo reportado',
+        description: `${patient.nombre} reportó dolor ${patient.soporte.dolor}/10.`,
+        action: 'Derivar a evaluación de dolor y realizar llamada de orientación.',
+        patient
+      });
+    }
+    if (patient.soporte?.apoyoPsicologico) {
+      alerts.push({
+        id: `psychology-${patient.id}`,
+        type: 'Alta',
+        color: 'orange',
+        title: 'Necesidad de apoyo psicológico',
+        description: `${patient.nombre} reporta estado emocional: ${patient.soporte.estadoEmocional}.`,
+        action: 'Activar llamada de apoyo psicológico o navegación emocional.',
+        patient
+      });
+    }
+    if (patient.soporte && !patient.soporte.familiarAutorizado) {
+      alerts.push({
+        id: `family-${patient.id}`,
+        type: 'Media',
+        color: 'yellow',
+        title: 'Sin familiar autorizado',
+        description: `${patient.nombre} no registra familiar autorizado para comunicación.`,
+        action: 'Solicitar autorización de contacto familiar.',
+        patient
+      });
+    }
   });
   return alerts;
 };
+
+export const getSupportStats = (list = patients) => {
+  const painSevere = list.filter((p) => p.soporte?.dolor >= 7).length;
+  const psychology = list.filter((p) => p.soporte?.apoyoPsicologico).length;
+  const noFamily = list.filter((p) => !p.soporte?.familiarAutorizado).length;
+  const familyCommunication = list.filter((p) => p.soporte?.comunicacionFamiliar).length;
+  return { painSevere, psychology, noFamily, familyCommunication };
+};
+
+export const getSupportNeeds = (list = patients) =>
+  list
+    .filter((p) => p.soporte?.dolor >= 6 || p.soporte?.apoyoPsicologico || !p.soporte?.familiarAutorizado || p.soporte?.comunicacionFamiliar)
+    .map((p) => ({
+      patient: p,
+      pain: p.soporte?.dolor || 0,
+      emotional: p.soporte?.estadoEmocional || 'No reportado',
+      familyStatus: p.soporte?.familiarAutorizado ? `${p.soporte.familiarNombre} (${p.soporte.familiarParentesco})` : 'Sin familiar autorizado',
+      recommendedAction:
+        p.soporte?.dolor >= 7
+          ? 'Derivar a evaluación de dolor y activar llamada de orientación.'
+          : p.soporte?.apoyoPsicologico
+            ? 'Activar apoyo psicológico y seguimiento emocional.'
+            : !p.soporte?.familiarAutorizado
+              ? 'Solicitar autorización para contacto familiar.'
+              : 'Registrar comunicación con familiar autorizado.'
+    }));
 
 export const getContinuityRecommendation = (patient) => {
   const current = getCurrentStep(patient);
@@ -107,8 +166,12 @@ export const getContinuityRecommendation = (patient) => {
     nextStep: next,
     suggestedDates,
     reason:
-      patient.riesgo >= 0.7
-        ? 'Paciente con riesgo alto de discontinuidad. Priorizar continuidad diagnóstica.'
-        : 'Paciente con proceso activo. Mantener seguimiento dentro de tiempos esperados.'
+      patient.soporte?.dolor >= 7
+        ? 'Paciente con dolor relevante y riesgo de discontinuidad. Priorizar soporte integral y continuidad diagnóstica.'
+        : patient.soporte?.apoyoPsicologico
+          ? 'Paciente requiere apoyo psicológico durante la ruta diagnóstica. Priorizar acompañamiento.'
+          : patient.riesgo >= 0.7
+            ? 'Paciente con riesgo alto de discontinuidad. Priorizar continuidad diagnóstica.'
+            : 'Paciente con proceso activo. Mantener seguimiento dentro de tiempos esperados.'
   };
 };

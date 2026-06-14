@@ -16,6 +16,18 @@ export const patients = [
     etapaActual: 'Biopsia',
     diasEspera: 34,
     estadoCita: 'pendiente',
+    soporte: {
+      dolor: 8,
+      estadoEmocional: 'Muy ansiosa',
+      apoyoPsicologico: true,
+      familiarAutorizado: true,
+      familiarNombre: 'Rosa Quispe',
+      familiarParentesco: 'Hermana',
+      comunicacionFamiliar: true,
+      requiereTerapiaDolor: true,
+      ultimoReporte: '2026-06-12',
+      observacion: 'Refiere dolor intenso y temor por el resultado. Requiere llamada de orientación.'
+    },
     ruta: [
       { etapa: 'Referencia', estado: 'completado', fecha: '2026-05-02', orientacion: 'La referencia permite ingresar al proceso diagnóstico.' },
       { etapa: 'Mamografía', estado: 'completado', fecha: '2026-05-09', orientacion: 'No usar talco, perfume o desodorante el día del examen.' },
@@ -43,6 +55,18 @@ export const patients = [
     etapaActual: 'Colposcopía',
     diasEspera: 14,
     estadoCita: 'por vencer',
+    soporte: {
+      dolor: 4,
+      estadoEmocional: 'Preocupada',
+      apoyoPsicologico: false,
+      familiarAutorizado: true,
+      familiarNombre: 'Lucía Navarro',
+      familiarParentesco: 'Hija',
+      comunicacionFamiliar: true,
+      requiereTerapiaDolor: false,
+      ultimoReporte: '2026-06-11',
+      observacion: 'Solicita orientación sobre documentos y acompañamiento.'
+    },
     ruta: [
       { etapa: 'Referencia', estado: 'completado', fecha: '2026-05-20', orientacion: 'Traer referencia y documentos de seguro.' },
       { etapa: 'PAP/IVAA', estado: 'completado', fecha: '2026-05-27', orientacion: 'Examen inicial de tamizaje.' },
@@ -70,6 +94,18 @@ export const patients = [
     etapaActual: 'Patología',
     diasEspera: 46,
     estadoCita: 'vencida',
+    soporte: {
+      dolor: 7,
+      estadoEmocional: 'Muy ansiosa',
+      apoyoPsicologico: true,
+      familiarAutorizado: false,
+      familiarNombre: '',
+      familiarParentesco: '',
+      comunicacionFamiliar: false,
+      requiereTerapiaDolor: true,
+      ultimoReporte: '2026-06-10',
+      observacion: 'Paciente de provincia sin familiar autorizado. Riesgo de pérdida de seguimiento.'
+    },
     ruta: [
       { etapa: 'Referencia', estado: 'completado', fecha: '2026-04-18', orientacion: 'Ingreso al flujo diagnóstico.' },
       { etapa: 'Mamografía', estado: 'completado', fecha: '2026-04-24', orientacion: 'Examen completado.' },
@@ -97,6 +133,18 @@ export const patients = [
     etapaActual: 'Biopsia',
     diasEspera: 21,
     estadoCita: 'pendiente',
+    soporte: {
+      dolor: 5,
+      estadoEmocional: 'Triste',
+      apoyoPsicologico: true,
+      familiarAutorizado: true,
+      familiarNombre: 'Elena Castro',
+      familiarParentesco: 'Madre',
+      comunicacionFamiliar: true,
+      requiereTerapiaDolor: false,
+      ultimoReporte: '2026-06-12',
+      observacion: 'Requiere orientación en quechua y llamada a familiar autorizado.'
+    },
     ruta: [
       { etapa: 'Referencia', estado: 'completado', fecha: '2026-05-10', orientacion: 'Ingreso al flujo diagnóstico.' },
       { etapa: 'PAP/IVAA', estado: 'completado', fecha: '2026-05-16', orientacion: 'Examen inicial completado.' },
@@ -124,6 +172,18 @@ export const patients = [
     etapaActual: 'Diagnóstico',
     diasEspera: 9,
     estadoCita: 'por vencer',
+    soporte: {
+      dolor: 2,
+      estadoEmocional: 'Tranquila',
+      apoyoPsicologico: false,
+      familiarAutorizado: true,
+      familiarNombre: 'Carlos Ramos',
+      familiarParentesco: 'Esposo',
+      comunicacionFamiliar: false,
+      requiereTerapiaDolor: false,
+      ultimoReporte: '2026-06-13',
+      observacion: 'Sin signos de alarma psicosocial. Requiere recordatorio de cita.'
+    },
     ruta: [
       { etapa: 'Referencia', estado: 'completado', fecha: '2026-05-01', orientacion: 'Ingreso al flujo diagnóstico.' },
       { etapa: 'Mamografía', estado: 'completado', fecha: '2026-05-08', orientacion: 'Examen completado.' },

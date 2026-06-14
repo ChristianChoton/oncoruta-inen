@@ -1,11 +1,12 @@
 import React from 'react';
-import { AlertTriangle, BarChart3, FileText, Network, Settings, UsersRound } from 'lucide-react';
+import { AlertTriangle, BarChart3, FileText, HeartHandshake, Network, UsersRound } from 'lucide-react';
 
 const menu = [
   { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
   { id: 'patients', label: 'Pacientes', icon: UsersRound },
   { id: 'alerts', label: 'Alertas', icon: AlertTriangle },
   { id: 'continuity', label: 'Continuidad', icon: Network },
+  { id: 'support', label: 'Soporte integral', icon: HeartHandshake },
   { id: 'reports', label: 'Reportes', icon: FileText }
 ];
 
@@ -31,7 +32,7 @@ export default function AdminLayout({ children, active, setActive, onSwitch }) {
           Cambiar a Portal Paciente
         </button>
         <div className="sidebar-note">
-          Esta vista prioriza continuidad diagnóstica, alertas, cuellos de botella y seguimiento institucional.
+          Esta vista prioriza continuidad diagnóstica, alertas, soporte integral y seguimiento institucional.
         </div>
       </aside>
       <main className="portal-main">{children}</main>

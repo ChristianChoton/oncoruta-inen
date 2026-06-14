@@ -41,6 +41,7 @@ export default function PatientHome({ patient, setPage }) {
         <p>{current?.orientacion}</p>
         <div className="callout-actions">
           <button onClick={() => setPage('route')}>Ver mi ruta</button>
+          <button onClick={() => setPage('support')} className="secondary">Bienestar y apoyo</button>
           <button onClick={() => setPage('bot')} className="secondary">Preguntar a OncoBot</button>
         </div>
       </section>

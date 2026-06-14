@@ -4,12 +4,14 @@ import AdminLayout from './layouts/AdminLayout';
 import PatientHome from './pages/patient/Home';
 import PatientRoute from './pages/patient/Route';
 import PatientAppointments from './pages/patient/Appointments';
+import PatientSupport from './pages/patient/Support';
 import PatientOncoBot from './pages/patient/OncoBot';
 import PatientAccessibility from './pages/patient/Accessibility';
 import AdminDashboard from './pages/admin/Dashboard';
 import AdminPatients from './pages/admin/Patients';
 import AdminAlerts from './pages/admin/Alerts';
 import AdminContinuity from './pages/admin/Continuity';
+import AdminSupport from './pages/admin/Support';
 import AdminReports from './pages/admin/Reports';
 import { getPatients } from './services/patientService';
 
@@ -32,7 +34,7 @@ export default function App() {
         <header className="topbar">
           <div>
             <h2>Portal Paciente</h2>
-            <p>Experiencia de diagnóstico oportuno, inclusivo e intercultural.</p>
+            <p>Experiencia de diagnóstico oportuno, inclusivo, intercultural y con acompañamiento integral.</p>
           </div>
           <select value={selectedPatient.id} onChange={(e) => setSelectedPatient(patients.find((p) => p.id === Number(e.target.value)))}>
             {patients.map((p) => <option key={p.id} value={p.id}>{p.nombre}</option>)}
@@ -42,6 +44,7 @@ export default function App() {
         {patientPage === 'home' && <PatientHome patient={selectedPatient} setPage={setPatientPage} />}
         {patientPage === 'route' && <PatientRoute patient={selectedPatient} />}
         {patientPage === 'appointments' && <PatientAppointments patient={selectedPatient} />}
+        {patientPage === 'support' && <PatientSupport patient={selectedPatient} />}
         {patientPage === 'bot' && <PatientOncoBot patient={selectedPatient} />}
         {patientPage === 'accessibility' && <PatientAccessibility patient={selectedPatient} />}
       </PatientLayout>
@@ -53,7 +56,7 @@ export default function App() {
       <header className="topbar">
         <div>
           <h2>Portal Gestor INEN</h2>
-          <p>Priorización, alertas y continuidad diagnóstica.</p>
+          <p>Priorización, alertas, soporte integral y continuidad diagnóstica.</p>
         </div>
         <div className="doctor">
           <div className="doctor-avatar">IN</div>
@@ -65,6 +68,7 @@ export default function App() {
       {adminPage === 'patients' && <AdminPatients patients={patients} selectPatient={selectPatientFromAdmin} />}
       {adminPage === 'alerts' && <AdminAlerts patients={patients} selectPatient={selectPatientFromAdmin} />}
       {adminPage === 'continuity' && <AdminContinuity patients={patients} />}
+      {adminPage === 'support' && <AdminSupport patients={patients} />}
       {adminPage === 'reports' && <AdminReports />}
     </AdminLayout>
   );

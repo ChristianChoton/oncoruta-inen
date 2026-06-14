@@ -31,6 +31,15 @@ export default function OncoBotChat({ patient }) {
     if (q.includes('documento') || q.includes('llevar')) {
       return 'Debes llevar DNI, referencia, hoja de cita, resultados previos y documentos de seguro/SIS si corresponde.';
     }
+    if (q.includes('dolor') || q.includes('malestar')) {
+      return 'Puedes reportar tu dolor en el módulo Bienestar y apoyo. Si el dolor es intenso, solicita orientación para que el equipo gestor evalúe una derivación.';
+    }
+    if (q.includes('psicolog') || q.includes('ansiedad') || q.includes('triste') || q.includes('emocional')) {
+      return 'Puedes solicitar apoyo psicológico desde Bienestar y apoyo. OncoRuta registrará tu necesidad para que el equipo responsable pueda orientarte.';
+    }
+    if (q.includes('familiar') || q.includes('familia')) {
+      return 'La comunicación con familiares requiere autorización. En Bienestar y apoyo puedes revisar o solicitar actualización del familiar autorizado.';
+    }
     if (q.includes('riesgo') || q.includes('abandono') || q.includes('discontinuidad')) {
       return `OncoRuta identifica factores que podrían afectar la continuidad, como: ${patient.condicion.join(', ')}. Esta información ayuda al equipo gestor a priorizar acompañamiento.`;
     }
@@ -40,7 +49,7 @@ export default function OncoBotChat({ patient }) {
     if (q.includes('quechua') || q.includes('audio') || q.includes('idioma')) {
       return 'Puedo mostrar las instrucciones en español sencillo, quechua o lectura por audio para mejorar la comprensión.';
     }
-    return 'Puedes preguntarme por tu etapa actual, documentos, próxima cita, orientación general o accesibilidad.';
+    return 'Puedes preguntarme por tu etapa actual, documentos, próxima cita, dolor, apoyo psicológico, familiar autorizado o accesibilidad.';
   };
 
   const submit = (e) => {
@@ -56,7 +65,7 @@ export default function OncoBotChat({ patient }) {
     setInput('');
   };
 
-  const prompts = ['¿Cuál es mi etapa actual?', '¿Qué documentos debo llevar?', '¿Cuándo es mi cita?', 'Necesito reprogramar'];
+  const prompts = ['¿Cuál es mi etapa actual?', '¿Qué documentos debo llevar?', 'Tengo dolor', 'Necesito apoyo psicológico'];
 
   return (
     <div className="chat-module">
